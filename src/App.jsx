@@ -17,6 +17,7 @@ import {
   Account,
   Header,
   NetworkSwitch,
+  NetworkDisplay,
 } from "./components";
 import { INFURA_ID, NETWORK, NETWORKS } from "./constants";
 import externalContracts from "./contracts/external_contracts";
@@ -376,9 +377,9 @@ function App({props}) {
             onClick={async () => {
 
               const signer = (new ethers.providers.Web3Provider(window.ethereum)).getSigner();
-              const contract = new ethers.Contract("0xc954f1E2fbD6B78fd605bd0aD1446b61a3b9297e", ABI, signer);
+              const contract = new ethers.Contract("0xaCEd4CBc09392127a5b823Ad12676D8A6f055B10", ABI, signer);
                   
-             const cost = "0";  
+             const cost = contract.cost();  
 
              const result = tx(contract.mint(newPurpose, { value: cost }), update => {
                 console.log("📡 Transaction Update:", update);
@@ -400,7 +401,16 @@ function App({props}) {
       </Col>
     </Row>
     </Col>
+    <NetworkDisplay
+        NETWORKCHECK={NETWORKCHECK}
+        localChainId={localChainId}
+        selectedChainId={selectedChainId}
+        targetNetwork={targetNetwork}
+        logoutOfWeb3Modal={logoutOfWeb3Modal}
+        USE_NETWORK_SELECTOR={USE_NETWORK_SELECTOR}
+      />
     </Row>
+    
   );
 }
 
