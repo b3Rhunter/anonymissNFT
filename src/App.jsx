@@ -377,8 +377,8 @@ function App({props}) {
             onClick={async () => {
 
               const signer = (new ethers.providers.Web3Provider(window.ethereum)).getSigner();
-              const contract = new ethers.Contract("0xaCEd4CBc09392127a5b823Ad12676D8A6f055B10", ABI, signer);
-                  
+              const contract = new ethers.Contract("0x6C1816cC3C3a56e72FE3C4EFCff051D3463F6171", ABI, signer);
+              
              const cost = contract.cost();  
 
              const result = tx(contract.mint(newPurpose, { value: cost }), update => {
